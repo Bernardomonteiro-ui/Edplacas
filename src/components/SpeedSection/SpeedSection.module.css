@@ -1,0 +1,106 @@
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.huge {
+  font-size: clamp(4.5rem, 19vw, 24rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-left: var(--gutter);
+}
+
+.huge span {
+  display: inline-block;
+  will-change: transform;
+}
+
+.body {
+  display: grid;
+  gap: 64px;
+  margin-top: clamp(56px, 9vw, 140px);
+}
+
+.intro {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+
+.desc {
+  color: var(--text);
+}
+
+.services {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  color: var(--text-dim);
+}
+
+.services li::before {
+  content: "— ";
+  color: var(--accent);
+}
+
+.rows {
+  display: grid;
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  padding-block: 28px;
+}
+
+.rowLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.value {
+  font-size: clamp(2.75rem, 1.5rem + 5vw, 6.5rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 900px) {
+  .body {
+    grid-template-columns: 4fr 7fr;
+    gap: clamp(40px, 6vw, 120px);
+  }
+  .row {
+    grid-template-columns: 180px 1fr auto;
+    align-items: baseline;
+    gap: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .huge {
+    white-space: normal;
+    font-size: clamp(3rem, 13vw, 14rem);
+    padding-right: var(--gutter);
+  }
+}

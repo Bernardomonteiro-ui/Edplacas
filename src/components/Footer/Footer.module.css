@@ -1,0 +1,47 @@
+.footer {
+  padding-top: clamp(64px, 8vw, 120px);
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+
+.grid {
+  display: grid;
+  gap: 48px;
+}
+
+.brand {
+  display: grid;
+  gap: 20px;
+  max-width: 36ch;
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  color: var(--text-dim);
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 24px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 899px) {
+  /* espaço para a barra fixa de WhatsApp */
+  .legal {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+}

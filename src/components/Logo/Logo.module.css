@@ -1,0 +1,38 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1;
+}
+
+.mark {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 26px;
+  padding-top: 5px;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.band {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: var(--accent);
+}
+
+.word {
+  font-weight: 700;
+  font-stretch: 125%;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}

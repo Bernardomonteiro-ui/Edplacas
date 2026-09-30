@@ -1,0 +1,330 @@
+/*
+  Geometria do palco
+  --ratio : proporção da foto (2400 × 1601)
+  --fw/--fh : tamanho do frame que cobre a tela mantendo a proporção
+  --s     : deslocamento vertical do frame (sobe a foto no mobile)
+  --py    : posição vertical da placa na tela (0.65 da foto)
+*/
+.hero {
+  --ratio: 1.499;
+  --fw: max(100vw, 100svh * var(--ratio));
+  --fh: max(100svh, 100vw / var(--ratio));
+  --s: 0;
+  --py: calc(50% + (0.15 - var(--s)) * var(--fh));
+  position: relative;
+  height: 220svh;
+  background: var(--bg);
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% var(--py);
+  will-change: transform;
+}
+
+.drift {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% var(--py);
+}
+
+.frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--fw);
+  height: var(--fh);
+  translate: -50% calc(-50% - var(--s) * var(--fh));
+  transform-origin: 50% 65%;
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* Placa presa ao para-choque (coordenadas medidas na foto) */
+.plateMount {
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  width: 11.75%;
+  translate: -50% -50%;
+  filter: brightness(0.8) contrast(1.04);
+}
+
+.plateFocus {
+  position: absolute;
+  inset: -22% -6%;
+  opacity: 0;
+}
+
+.plateFocus i {
+  position: absolute;
+  width: 10%;
+  aspect-ratio: 1;
+  border: 0 solid var(--accent);
+}
+
+.plateFocus i:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+.plateFocus i:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-width: 1px 1px 0 0;
+}
+.plateFocus i:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 1px 1px;
+}
+.plateFocus i:nth-child(4) {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(8, 8, 8, 0.78) 0%, rgba(8, 8, 8, 0.2) 34%, rgba(8, 8, 8, 0) 52%),
+    linear-gradient(0deg, rgba(8, 8, 8, 0.92) 0%, rgba(8, 8, 8, 0.35) 22%, rgba(8, 8, 8, 0) 40%);
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 34% 20% at 50% var(--py), rgba(8, 8, 8, 0) 0%, rgba(8, 8, 8, 0.55) 60%, rgba(8, 8, 8, 0.9) 100%);
+}
+
+/* Marcações técnicas */
+.tech {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: var(--text-faint);
+}
+
+.techTL,
+.techTR {
+  position: absolute;
+  top: calc(var(--py) - 10px);
+}
+
+.techTL {
+  left: var(--gutter);
+}
+
+.techTR {
+  right: var(--gutter);
+}
+
+.crossH {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--py);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line) 12%, transparent 36%, transparent 64%, var(--line) 88%, transparent);
+}
+
+.crossV {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 20%, var(--line) 45%, transparent 58%);
+}
+
+.techTL,
+.techTR,
+.crossH,
+.crossV {
+  opacity: 0;
+}
+
+.plateLabel {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--py) + 0.038 * var(--fw) + 18px);
+  translate: -50% 0;
+  white-space: nowrap;
+  color: var(--text);
+  opacity: 0;
+}
+
+.plateLabel b {
+  color: var(--accent);
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+/* Texto */
+.copy {
+  position: absolute;
+  inset: 0;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: calc(var(--nav-h) + clamp(12px, 3vh, 40px));
+  padding-bottom: clamp(72px, 10vh, 112px);
+  pointer-events: none;
+}
+
+.copy a,
+.copy button {
+  pointer-events: auto;
+}
+
+.eyebrow {
+  color: var(--accent);
+  margin-bottom: clamp(12px, 2vh, 24px);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18em;
+  font-size: clamp(2.6rem, 11vw, 15rem);
+}
+
+.line {
+  display: block;
+}
+
+.line :global(.mask) {
+  margin-right: 0.22em;
+}
+
+.line2 {
+  font-size: clamp(1.05rem, 3.1vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: auto;
+}
+
+.sub {
+  max-width: 30ch;
+}
+
+.ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ctas :global(.btn) {
+  width: 100%;
+}
+
+.ctas > * {
+  width: 100%;
+}
+
+.scroll {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 28px;
+  display: none;
+  gap: 10px;
+  color: var(--text-dim);
+  min-height: 44px;
+  align-items: center;
+}
+
+.scroll span {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll span {
+    animation: bob 2.2s var(--ease-in-out) infinite;
+  }
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+/* Mobile: foto sobe para abrir espaço aos CTAs; placa fica maior e central. */
+@media (max-width: 767px) {
+  .hero {
+    --s: 0.07;
+  }
+  .techTL,
+  .techTR {
+    display: none;
+  }
+  .sub {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 560px) {
+  .ctas {
+    flex-direction: row;
+  }
+  .ctas > *,
+  .ctas :global(.btn) {
+    width: auto;
+  }
+}
+
+@media (min-width: 900px) {
+  .bottom {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .scroll {
+    display: inline-flex;
+  }
+  .copy {
+    padding-bottom: 96px;
+  }
+}
+
+/* Telas baixas (laptop em paisagem / celular deitado) */
+@media (max-height: 560px) and (orientation: landscape) {
+  .hero {
+    height: 100svh;
+  }
+  .title {
+    font-size: clamp(2rem, 7vw, 5rem);
+  }
+  .sub {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    height: 100svh;
+  }
+}

@@ -1,0 +1,131 @@
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.grid {
+  display: grid;
+  gap: 56px;
+}
+
+.sticky {
+  display: grid;
+  gap: 24px;
+}
+
+.title {
+  font-size: clamp(2.5rem, 1.2rem + 5vw, 6rem);
+}
+
+.big {
+  display: none;
+}
+
+.list {
+  position: relative;
+  padding-left: 44px;
+}
+
+.track {
+  position: absolute;
+  left: 7px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: var(--line);
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform-origin: top;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  padding-block: clamp(36px, 7vh, 72px);
+  border-bottom: 1px solid var(--line);
+}
+
+.step:first-of-type {
+  padding-top: 0;
+}
+
+.step:last-child {
+  border-bottom: 0;
+}
+
+.dot {
+  position: absolute;
+  left: -41px;
+  top: calc(clamp(36px, 7vh, 72px) + 6px);
+  width: 9px;
+  height: 9px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  transition:
+    background-color var(--dur),
+    border-color var(--dur);
+}
+
+.step:first-of-type .dot {
+  top: 6px;
+}
+
+.step[data-active] .dot {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.num {
+  color: var(--accent);
+  font-size: 0.8125rem;
+}
+
+.stepTitle {
+  font-size: clamp(1.75rem, 1rem + 3.4vw, 4rem);
+  font-stretch: 125%;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.text {
+  color: var(--text-dim);
+  max-width: 40ch;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 5fr 7fr;
+    gap: clamp(40px, 6vw, 120px);
+  }
+  .sticky {
+    position: sticky;
+    top: calc(var(--nav-h-compact) + 40px);
+  }
+  .big {
+    display: block;
+    overflow: hidden;
+    margin-top: 24px;
+    font-size: clamp(8rem, 18vw, 20rem);
+    font-weight: 800;
+    font-stretch: 125%;
+    line-height: 0.85;
+    letter-spacing: -0.06em;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--line-strong);
+  }
+  .big span {
+    display: inline-block;
+  }
+  .step {
+    min-height: 44vh;
+    align-content: center;
+  }
+}

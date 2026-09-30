@@ -1,0 +1,49 @@
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom));
+  background: linear-gradient(0deg, rgba(8, 8, 8, 0.95) 40%, rgba(8, 8, 8, 0));
+  transform: translateY(110%);
+  transition: transform 500ms var(--ease-out);
+  pointer-events: none;
+}
+
+.bar[data-visible] {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+:global(html[data-menu="open"]) .bar,
+:global(html[data-dialog="open"]) .bar {
+  transform: translateY(110%);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 52px;
+  background: #25d366;
+  color: #06140b;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 900px) {
+  .bar {
+    display: none;
+  }
+}
+
+.alt {
+  background: var(--accent);
+  color: var(--accent-ink);
+}

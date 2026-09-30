@@ -1,0 +1,257 @@
+.section {
+  position: relative;
+  z-index: 2;
+  height: 320svh;
+  background: var(--bg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Atravessa o hero enquanto ele ainda está preso. */
+  .section {
+    margin-top: -40svh;
+  }
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.window {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+  object-position: 50% 55%;
+  will-change: transform;
+}
+
+.tint {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 8, 8, 0.72) 0%, rgba(8, 8, 8, 0.1) 38%, rgba(8, 8, 8, 0.2) 60%, rgba(8, 8, 8, 0.9) 100%),
+    linear-gradient(90deg, rgba(8, 8, 8, 0.5), transparent 45%);
+}
+
+/* Caixa de inspeção: cantos, régua e mira */
+.marks {
+  position: absolute;
+  top: 14%;
+  bottom: 12%;
+  left: 6%;
+  right: 6%;
+  pointer-events: none;
+}
+
+.marks > i {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 0 solid var(--text);
+}
+
+.c1 {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px !important;
+}
+.c2 {
+  top: 0;
+  right: 0;
+  border-width: 1px 1px 0 0 !important;
+}
+.c3 {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 1px 1px !important;
+}
+.c4 {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0 !important;
+}
+
+.rule {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  top: -1px;
+  height: 7px;
+  transform-origin: left center;
+  background:
+    linear-gradient(var(--line-strong), var(--line-strong)) left top / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, var(--line-strong) 0 1px, transparent 1px 40px) left top / 100% 7px no-repeat;
+}
+
+.rule span {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  translate: -50% 0;
+  color: var(--text-faint);
+}
+
+.ruleV {
+  position: absolute;
+  top: 28px;
+  bottom: 28px;
+  right: -1px;
+  width: 7px;
+  transform-origin: center top;
+  background:
+    linear-gradient(var(--line-strong), var(--line-strong)) right top / 1px 100% no-repeat,
+    repeating-linear-gradient(180deg, var(--line-strong) 0 1px, transparent 1px 40px) right top / 7px 100% no-repeat;
+}
+
+.cross {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 36px;
+  height: 36px;
+  translate: -50% -50%;
+  background:
+    linear-gradient(var(--accent), var(--accent)) center / 1px 100% no-repeat,
+    linear-gradient(var(--accent), var(--accent)) center / 100% 1px no-repeat;
+}
+
+.readouts {
+  position: absolute;
+  top: calc(14% + 22px);
+  right: calc(6% + 24px);
+  display: grid;
+  gap: 6px;
+  color: var(--text-dim);
+}
+
+.readouts > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 150px;
+}
+
+.readouts dd {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.leaderSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: none;
+}
+
+.leader {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.loupe {
+  position: absolute;
+  right: calc(6% + 24px);
+  bottom: calc(12% + 24px);
+  width: min(380px, 42vw);
+  padding: 22px 22px 16px;
+  background: rgba(8, 8, 8, 0.72);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.loupe figcaption {
+  margin-top: 16px;
+  color: var(--text-dim);
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: calc(14% + 22px);
+  padding-bottom: calc(12% + 24px);
+  pointer-events: none;
+}
+
+.title {
+  max-width: 10ch;
+  transform-origin: left top;
+  padding-left: calc(6vw - var(--gutter) + 24px);
+}
+
+.text {
+  max-width: 28ch;
+  padding-left: calc(6vw - var(--gutter) + 24px);
+  color: var(--text);
+}
+
+@media (min-width: 900px) {
+  .leaderSvg {
+    display: block;
+  }
+}
+
+@media (max-width: 899px) {
+  .section {
+    height: 240svh;
+  }
+  .readouts {
+    top: auto;
+    bottom: calc(12% + 24px);
+    right: calc(6% + 16px);
+    left: auto;
+  }
+  .loupe {
+    left: calc(6% + 16px);
+    right: auto;
+    top: 36%;
+    bottom: auto;
+    width: min(260px, 60vw);
+    padding: 14px 14px 10px;
+  }
+  .content {
+    padding-top: calc(var(--nav-h) + 16px);
+  }
+  .title,
+  .text {
+    padding-left: 0;
+  }
+  .text {
+    padding-right: 150px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .text {
+    padding-right: 0;
+    margin-bottom: 90px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    height: auto;
+  }
+  .stage {
+    position: relative;
+    height: 100svh;
+    min-height: 600px;
+  }
+}

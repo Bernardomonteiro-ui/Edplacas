@@ -1,0 +1,179 @@
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+  background: var(--bg);
+}
+
+.head {
+  display: grid;
+  gap: 28px;
+  margin-bottom: clamp(40px, 6vw, 88px);
+}
+
+.lead {
+  max-width: 34ch;
+}
+
+@media (min-width: 900px) {
+  .head {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: end;
+  }
+}
+
+.wrap {
+  padding-inline: var(--gutter);
+  max-width: var(--max);
+  margin-inline: auto;
+}
+
+.frame {
+  --pos: 50%;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: ew-resize;
+  background: var(--surface);
+}
+
+@media (min-width: 700px) {
+  .frame {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.before {
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+
+/*
+  Mesmo palco do hero, ampliado 3×, com a placa (50% / 65% da foto)
+  posicionada no centro do quadro.
+*/
+.stage {
+  position: absolute;
+  width: 300%;
+  aspect-ratio: 1.499;
+  left: 50%;
+  top: 50%;
+  translate: -50% -65%;
+}
+
+.img {
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.imgBefore {
+  filter: saturate(0.5) sepia(0.28) brightness(0.8) contrast(0.92);
+}
+
+.mount {
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  width: 11.75%;
+  translate: -50% -50%;
+  filter: brightness(0.86);
+}
+
+.mountBefore {
+  translate: -49% -44%;
+  rotate: -3.2deg;
+  filter: brightness(0.8) contrast(0.95);
+}
+
+.tag {
+  position: absolute;
+  top: 20px;
+  padding: 8px 12px;
+  background: rgba(8, 8, 8, 0.7);
+  color: var(--text);
+  pointer-events: none;
+}
+
+.tagL {
+  left: 20px;
+}
+
+.tagR {
+  right: 20px;
+  color: var(--accent);
+}
+
+.handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 44px;
+  translate: -50% 0;
+  display: grid;
+  place-items: center;
+  cursor: ew-resize;
+  outline: none;
+}
+
+.handle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--text);
+}
+
+.knob {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  background: var(--text);
+  color: var(--bg);
+  transition:
+    transform var(--dur) var(--ease-out),
+    background-color var(--dur-fast);
+}
+
+.frame:hover .knob,
+.handle:focus-visible .knob {
+  transform: scale(1.08);
+}
+
+.handle:focus-visible .knob {
+  background: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  translate: -50% 0;
+  padding: 8px 14px;
+  background: rgba(8, 8, 8, 0.75);
+  color: var(--text);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity var(--dur);
+}
+
+.hint[data-hidden] {
+  opacity: 0;
+}
+
+.caption {
+  margin-top: 14px;
+}

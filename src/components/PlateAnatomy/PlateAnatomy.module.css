@@ -1,0 +1,249 @@
+.section {
+  position: relative;
+  height: 460svh;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 55%, rgba(255, 255, 255, 0.045), transparent 70%),
+    var(--bg);
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Grade técnica de fundo */
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 80px 80px;
+  background-position: center;
+  opacity: 0.22;
+  mask-image: radial-gradient(ellipse 55% 50% at 50% 55%, #000 20%, transparent 75%);
+}
+
+.head {
+  position: absolute;
+  top: calc(var(--nav-h-compact) + 24px);
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 24px;
+  align-items: end;
+}
+
+.head > p:first-child {
+  grid-column: 1 / -1;
+}
+
+.title {
+  max-width: 26ch;
+  color: var(--text-dim);
+}
+
+.counter {
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.counter span {
+  color: var(--text);
+  font-size: 1.5rem;
+  letter-spacing: 0;
+}
+
+.board {
+  position: relative;
+  width: min(1240px, 94vw);
+  aspect-ratio: 1000 / 560;
+  margin: 0 auto;
+}
+
+.plate {
+  position: absolute;
+  left: 15%;
+  top: 29.4643%; /* 165 / 560 */
+  width: 70%;
+  will-change: transform;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.hl {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+}
+
+.hl circle,
+.hl line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+}
+
+.dash,
+.hl .dash {
+  stroke-dasharray: 6 5;
+}
+
+.svgMono {
+  fill: var(--accent);
+  stroke: none;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.14em;
+}
+
+.line {
+  fill: none;
+  stroke: var(--text-dim);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.hot {
+  fill: var(--bg);
+  stroke: var(--accent);
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+}
+
+.hotNum {
+  fill: var(--text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.labels {
+  position: absolute;
+  inset: 0;
+}
+
+.label {
+  position: absolute;
+  width: 19.5%;
+  transition: opacity var(--dur);
+}
+
+.label h3 {
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.label p {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--text-dim);
+}
+
+.captions {
+  display: none;
+}
+
+/* ---------- Mobile: prancha maior, legenda única ativa ---------- */
+@media (max-width: 899px) {
+  .section {
+    height: 400svh;
+  }
+  .board {
+    width: 132vw;
+    margin-left: -16vw;
+  }
+  .labels {
+    display: none;
+  }
+  .hotNum {
+    font-size: 22px;
+  }
+  .hot {
+    r: 22;
+  }
+  .captions {
+    display: grid;
+    margin-top: 12px;
+    min-height: 8.5rem;
+  }
+  .captions li {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity var(--dur) var(--ease-out),
+      transform var(--dur) var(--ease-out);
+  }
+  .capText {
+    margin-top: 10px;
+    color: var(--text-dim);
+    max-width: 36ch;
+  }
+  .section[data-active="0"] [data-caption="0"],
+  .section[data-active="1"] [data-caption="1"],
+  .section[data-active="2"] [data-caption="2"],
+  .section[data-active="3"] [data-caption="3"],
+  .section[data-active="4"] [data-caption="4"] {
+    opacity: 1;
+    transform: none;
+  }
+  .title {
+    font-size: 1.125rem;
+  }
+}
+
+/* ---------- Movimento reduzido: tudo visível, lista estática ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    height: auto;
+    padding-block: var(--section-y);
+  }
+  .stage {
+    position: relative;
+    height: auto;
+  }
+  .head {
+    position: relative;
+    top: 0;
+    margin-bottom: 48px;
+  }
+  .hl {
+    opacity: 0;
+  }
+  .counter {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 899px) {
+  .captions {
+    display: grid;
+    gap: 28px;
+  }
+  .captions li {
+    grid-area: auto;
+    opacity: 1;
+    transform: none;
+  }
+}
