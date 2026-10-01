@@ -102,7 +102,7 @@ export const company = {
 
   /** Informação regulatória exibida no formulário de solicitação. */
   legalNote:
-    "A estampagem de placas Mercosul depende de autorização do Detran. Nossa equipe orienta você sobre a documentação no atendimento.",
+    "Os documentos necessários podem variar conforme o serviço e as regras do seu estado. Fale com a equipe para confirmar o que levar.",
 
   services: [
     "Venda de placas automotivas padrão Mercosul",
@@ -218,4 +218,6 @@ export const company = {
 export type Company = typeof company;
 
 /** URL pública. Defina NEXT_PUBLIC_SITE_URL no ambiente de produção. */
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+export const siteUrl =
+  (configuredSiteUrl || (process.env.NODE_ENV === "production" ? null : "http://localhost:3000"))?.replace(/\/+$/, "") ?? null;

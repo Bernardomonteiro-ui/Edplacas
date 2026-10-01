@@ -36,14 +36,24 @@
 
 .content {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
   padding-top: calc(var(--nav-h) + 40px);
   padding-bottom: clamp(56px, 10vh, 120px);
 }
 
+.content > * {
+  min-width: 0;
+}
+
 .title {
-  font-size: clamp(2.5rem, 1rem + 7vw, 9rem);
-  max-width: 12ch;
+  font-size: clamp(2.5rem, 0.5rem + 4.9vw, 7rem);
+}
+
+@media (min-width: 560px) {
+  .line {
+    white-space: nowrap;
+  }
 }
 
 .line {
@@ -61,6 +71,9 @@
 }
 
 @media (max-width: 559px) {
+  .title {
+    font-size: clamp(2.25rem, 10vw, 4rem);
+  }
   .ctas {
     display: grid;
   }
@@ -70,5 +83,12 @@
   }
   .img {
     object-position: 80% 50%;
+  }
+}
+
+@media (max-width: 359px) {
+  .title {
+    font-size: clamp(1.875rem, 9.5vw, 2.5rem);
+    font-stretch: 110%;
   }
 }

@@ -4,7 +4,6 @@ import { siteUrl } from "@/config/company";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
+    ...(siteUrl ? { sitemap: `${siteUrl}/sitemap.xml`, host: siteUrl } : {}),
   };
 }

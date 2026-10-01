@@ -111,7 +111,7 @@
 
 @media (min-width: 900px) {
   .unit {
-    grid-template-columns: 5fr 7fr;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     gap: clamp(40px, 5vw, 96px);
   }
   .map {

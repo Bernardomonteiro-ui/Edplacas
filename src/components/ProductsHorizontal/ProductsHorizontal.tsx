@@ -33,7 +33,10 @@ function Panel({ product }: { product: Product }) {
       const st = { containerAnimation: tween, trigger: ref.current, start: "left right", end: "right left", scrub: true };
       gsap.fromTo(q("[data-img]"), { xPercent: -9 }, { xPercent: 9, ease: "none", scrollTrigger: st });
       gsap.fromTo(q("[data-num]"), { xPercent: 60 }, { xPercent: -30, ease: "none", scrollTrigger: st });
-      gsap.fromTo(q("[data-mini]"), { y: 40, rotate: -3 }, { y: -30, rotate: 2, ease: "none", scrollTrigger: st });
+      const mini = q("[data-mini]");
+      if (mini.length) {
+        gsap.fromTo(mini, { y: 40, rotate: -3 }, { y: -30, rotate: 2, ease: "none", scrollTrigger: st });
+      }
     },
     { scope: ref, dependencies: [tween], revertOnUpdate: true },
   );

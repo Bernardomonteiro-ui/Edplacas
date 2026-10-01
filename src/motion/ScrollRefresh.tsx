@@ -3,11 +3,7 @@
 import { useEffect } from "react";
 import { ScrollTrigger } from "@/lib/gsap";
 
-/**
- * Recalcula os ScrollTriggers quando fontes e imagens terminam de carregar
- * (mudanças de altura depois do primeiro cálculo desalinhariam pins e scrubs).
- * Também marca <html> com .js para os pré-estados de animação.
- */
+/** Atualiza ScrollTrigger quando fontes e imagens terminam de carregar. */
 export function ScrollRefresh() {
   useEffect(() => {
     const refresh = () => ScrollTrigger.refresh();

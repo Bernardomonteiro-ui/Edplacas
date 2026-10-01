@@ -70,6 +70,10 @@
   padding-inline: 20px;
 }
 
+.bar > .cta {
+  display: none;
+}
+
 .cta::after {
   display: none;
 }
@@ -179,7 +183,7 @@
   .cta {
     display: block;
   }
-  .cta {
+  .bar > .cta {
     display: inline-flex;
   }
   .burger,

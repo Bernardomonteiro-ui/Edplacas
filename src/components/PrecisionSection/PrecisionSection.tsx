@@ -114,7 +114,7 @@ export function PrecisionSection() {
         </dl>
 
         <svg className={styles.leaderSvg} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
-          <path data-leader d="M50 78 L70 78 L78 70" pathLength={1} className={styles.leader} />
+          <path data-leader d="M50 80 H78 L83.5 76" pathLength={1} className={styles.leader} />
         </svg>
 
         <figure className={styles.loupe} data-loupe>

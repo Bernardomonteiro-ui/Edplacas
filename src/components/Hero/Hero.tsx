@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import heroImg from "@/assets/images/hero.jpg";
 import { gsap, useGSAP, MQ } from "@/lib/gsap";
-import { onIntroDone } from "@/lib/intro";
 import { Plate } from "@/components/Plate/Plate";
 import { RequestButton } from "@/components/Request/RequestButton";
 import { Button } from "@/components/ui/Button";
@@ -32,14 +31,11 @@ export function Hero() {
 
       mm.add(MQ.motion, () => {
         // Entrada: palavras em stagger, técnica em sequência, CTA por último.
-        const intro = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
+        const intro = gsap.timeline({ defaults: { ease: "expo.out" } });
         intro
-          .fromTo(q("[data-frame]"), { scale: 1.12 }, { scale: 1, duration: 2.6, ease: "power2.out" }, 0)
-          .to(q("[data-hero-word] > span"), { yPercent: 0, y: 0, duration: 1.3, stagger: 0.07 }, 0.15)
-          .fromTo(q("[data-tech]"), { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.08, ease: "none" }, 0.6)
-          .fromTo(q("[data-hero-fade]"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 1, stagger: 0.1 }, 0.8);
-
-        const off = onIntroDone(() => intro.play());
+          .from(q("[data-hero-word] > span"), { yPercent: 105, duration: 1.3, stagger: 0.07, immediateRender: false }, 0.15)
+          .fromTo(q("[data-tech]"), { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.08, ease: "none", immediateRender: false }, 0.6)
+          .fromTo(q("[data-hero-fade]"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 1, stagger: 0.1, immediateRender: false }, 0.8);
 
         // Movimento contínuo extremamente sutil da câmera.
         gsap.to(q("[data-drift]"), { scale: 1.025, xPercent: -0.6, duration: 9, ease: "sine.inOut", yoyo: true, repeat: -1 });
@@ -56,7 +52,6 @@ export function Hero() {
           .fromTo(q("[data-plate-focus]"), { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.4 }, 0.35)
           .fromTo(q("[data-plate-label]"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.25 }, 0.55);
 
-        return () => off();
       });
 
       // Sem movimento: tudo visível no estado final de leitura.
@@ -74,7 +69,7 @@ export function Hero() {
       <div className={styles.stage}>
         <div className={styles.media} data-zoom>
           <div className={styles.drift} data-drift>
-            <div className={styles.frame} data-frame>
+            <div className={styles.frame}>
               <Image
                 src={heroImg}
                 alt="Frente de um esportivo grafite em um estacionamento aberto, com a placa Mercosul instalada no para-choque"
@@ -122,16 +117,22 @@ export function Hero() {
           </p>
           <h1 id="hero-title" className={`${styles.title} display`}>
             <span className={styles.line}>
-              {LINE_1.map((w) => (
-                <span key={w} className="mask" data-hero-word>
-                  <span>{w}</span>
+              {LINE_1.map((w, i) => (
+                <span key={w}>
+                  <span className="mask" data-hero-word>
+                    <span>{w}</span>
+                  </span>
+                  {i < LINE_1.length - 1 ? " " : null}
                 </span>
               ))}
-            </span>
+            </span>{" "}
             <span className={`${styles.line} ${styles.line2}`}>
-              {LINE_2.map((w) => (
-                <span key={w} className="mask" data-hero-word>
-                  <span>{w}</span>
+              {LINE_2.map((w, i) => (
+                <span key={w}>
+                  <span className="mask" data-hero-word>
+                    <span>{w}</span>
+                  </span>
+                  {i < LINE_2.length - 1 ? " " : null}
                 </span>
               ))}
             </span>

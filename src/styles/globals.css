@@ -416,15 +416,6 @@ address {
    Só se aplicam quando o JS carregou a classe .js e o movimento é permitido.
    ========================================================================== */
 
-@media (prefers-reduced-motion: no-preference) {
-  .js [data-hero-word] > span {
-    transform: translateY(105%);
-  }
-  .js [data-hero-fade] {
-    opacity: 0;
-  }
-}
-
 /* ==========================================================================
    MOVIMENTO REDUZIDO
    ========================================================================== */

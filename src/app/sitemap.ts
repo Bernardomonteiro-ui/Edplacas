@@ -2,5 +2,6 @@ import type { MetadataRoute } from "next";
 import { siteUrl } from "@/config/company";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: `${siteUrl}/`, lastModified: new Date(), changeFrequency: "monthly", priority: 1 }];
+  if (!siteUrl) return [];
+  return [{ url: siteUrl, lastModified: new Date(), changeFrequency: "monthly", priority: 1 }];
 }

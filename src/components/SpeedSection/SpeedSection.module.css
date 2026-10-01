@@ -87,13 +87,33 @@
 
 @media (min-width: 900px) {
   .body {
-    grid-template-columns: 4fr 7fr;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
     gap: clamp(40px, 6vw, 120px);
   }
   .row {
-    grid-template-columns: 180px 1fr auto;
+    grid-template-columns: 180px minmax(0, 1fr) auto;
     align-items: baseline;
     gap: 24px;
+  }
+}
+
+/* Sem indicadores reais: descrição e serviços ocupam a largura toda, em duas colunas. */
+.body[data-rows-count="0"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 900px) {
+  .body[data-rows-count="0"] .intro {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    column-gap: clamp(40px, 6vw, 120px);
+    align-items: end;
+  }
+  .body[data-rows-count="0"] .intro > :first-child {
+    grid-column: 1 / -1;
+  }
+  .body[data-rows-count="0"] .desc {
+    font-size: clamp(1.5rem, 1rem + 1.4vw, 2.25rem);
+    max-width: 26ch;
   }
 }
 

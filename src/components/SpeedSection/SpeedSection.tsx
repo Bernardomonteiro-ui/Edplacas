@@ -46,22 +46,27 @@ export function SpeedSection() {
           { xPercent: 6 },
           { xPercent: -38, ease: "none", scrollTrigger: { trigger: root.current, start: "top bottom", end: "bottom top", scrub: true } },
         );
-        gsap.from(q("[data-row]"), {
-          opacity: 0,
-          y: 40,
-          stagger: 0.12,
-          duration: 1,
-          ease: "expo.out",
-          scrollTrigger: { trigger: q("[data-rows]")[0], start: "top 80%", once: true },
-        });
-        gsap.from(q("[data-row-line]"), {
-          scaleX: 0,
-          transformOrigin: "left",
-          stagger: 0.12,
-          duration: 1.2,
-          ease: "expo.inOut",
-          scrollTrigger: { trigger: q("[data-rows]")[0], start: "top 80%", once: true },
-        });
+        const rows = q("[data-row]");
+        const rowsTrigger = q("[data-rows]")[0];
+        if (rows.length && rowsTrigger) {
+          const scrollTrigger = { trigger: rowsTrigger, start: "top 80%", once: true };
+          gsap.from(rows, {
+            opacity: 0,
+            y: 40,
+            stagger: 0.12,
+            duration: 1,
+            ease: "expo.out",
+            scrollTrigger,
+          });
+          gsap.from(q("[data-row-line]"), {
+            scaleX: 0,
+            transformOrigin: "left",
+            stagger: 0.12,
+            duration: 1.2,
+            ease: "expo.inOut",
+            scrollTrigger,
+          });
+        }
       });
       return () => mm.revert();
     },
@@ -74,7 +79,7 @@ export function SpeedSection() {
         <span data-slide>Sem complicação.</span>
       </h2>
 
-      <div className={`${styles.body} container`}>
+      <div className={`${styles.body} container`} data-rows-count={rows.length}>
         <div className={styles.intro}>
           <p className="mono accent">{company.name}</p>
           <p className={`${styles.desc} lead`}>{company.description}</p>

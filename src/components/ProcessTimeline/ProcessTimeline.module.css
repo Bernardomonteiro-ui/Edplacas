@@ -7,6 +7,7 @@
 
 .grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 56px;
 }
 
@@ -100,10 +101,37 @@
   max-width: 40ch;
 }
 
+@media (max-width: 559px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .grid > * {
+    min-width: 0;
+  }
+  .step,
+  .step > div {
+    min-width: 0;
+  }
+  .title {
+    font-size: clamp(2.125rem, 8vw, 3rem);
+    overflow-wrap: anywhere;
+  }
+  .stepTitle {
+    font-size: clamp(1.375rem, 6vw, 1.75rem);
+    overflow-wrap: anywhere;
+  }
+}
+
 @media (min-width: 900px) {
   .grid {
-    grid-template-columns: 5fr 7fr;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     gap: clamp(40px, 6vw, 120px);
+  }
+  .title {
+    font-size: clamp(2.5rem, 3.7vw, 5.25rem);
+  }
+  .stepTitle {
+    font-size: clamp(1.75rem, 3vw, 3.5rem);
   }
   .sticky {
     position: sticky;

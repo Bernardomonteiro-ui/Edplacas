@@ -54,6 +54,10 @@
   gap: 24px;
 }
 
+.intro :global(.h2) {
+  font-size: clamp(1.75rem, 8.4vw, 4rem);
+}
+
 .introText {
   max-width: 32ch;
 }
@@ -145,7 +149,7 @@
 @media (min-width: 900px) {
   .panel {
     width: min(62vw, 1040px);
-    grid-template-columns: 1.55fr 1fr;
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
     grid-template-rows: 1fr;
     gap: clamp(24px, 3vw, 48px);
     align-items: end;
@@ -164,7 +168,10 @@
     left: 58%;
   }
   .intro {
-    width: min(40vw, 620px);
+    width: min(44vw, 680px);
+  }
+  .intro :global(.h2) {
+    font-size: clamp(3rem, 4.3vw, 5.25rem);
   }
   .hint {
     display: none;

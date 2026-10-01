@@ -1,12 +1,9 @@
 import { ImageResponse } from "next/og";
 import { company } from "@/config/company";
 
-export const alt = `${company.name} — Placas automotivas Mercosul`;
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+const size = { width: 1200, height: 630 };
 
-/** Imagem de compartilhamento gerada no build: placa Mercosul + título. */
-export default function OpenGraphImage() {
+export function GET() {
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#080808", color: "#f4f4f1", padding: 72, fontFamily: "sans-serif" }}>

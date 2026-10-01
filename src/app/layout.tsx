@@ -20,20 +20,29 @@ const title = `${company.name} — Placas automotivas Mercosul${where}`;
 const description = `Venda e instalação de placas automotivas Mercosul para carros e motos${where}. Acabamento profissional, atendimento rápido e instalação especializada.`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  ...(siteUrl ? { metadataBase: new URL(siteUrl), alternates: { canonical: "/" } } : {}),
   title: { default: title, template: `%s · ${company.name}` },
   description,
   applicationName: company.name,
-  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "/",
+    ...(siteUrl
+      ? {
+          url: "/",
+          images: [{ url: "/api/og", width: 1200, height: 630, alt: `${company.name} — placas automotivas` }],
+        }
+      : {}),
     siteName: company.name,
     title,
     description,
   },
-  twitter: { card: "summary_large_image", title, description },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    ...(siteUrl ? { images: [`${siteUrl}/api/og`] } : {}),
+  },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
   formatDetection: { telephone: false },
 };
@@ -46,11 +55,8 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-/*
-  Marca .js antes da pintura (pré-estados de animação sem flash).
-  Rede de segurança: se o JS não concluir a abertura em 4s, remove a classe e mostra tudo.
-*/
-const bootScript = `document.documentElement.classList.add('js');setTimeout(function(){if(!window.__introDone)document.documentElement.classList.remove('js')},4000);`;
+/* A classe habilita a cortina e se remove após alguns segundos como fallback. */
+const bootScript = `document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.remove('js')},4000);`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -9,7 +9,7 @@ import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { MagneticButton } from "@/motion/MagneticButton";
 import styles from "./FinalCTA.module.css";
 
-const LINES = ["Seu carro merece", "o acabamento", "certo."];
+const LINES = ["Seu carro merece", "o acabamento certo."];
 
 /**
  * CTA final: ao chegar, a seção anterior recua e escurece, a imagem aproxima,
@@ -79,7 +79,7 @@ export function FinalCTA() {
           <MagneticButton>
             <RequestButton>Solicitar minha placa</RequestButton>
           </MagneticButton>
-          <WhatsAppButton />
+          <WhatsAppButton hideIfMissing />
         </div>
       </div>
     </section>
