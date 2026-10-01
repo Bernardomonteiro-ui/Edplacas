@@ -3,23 +3,25 @@
    ========================================================================== */
 
 :root {
-  /* Superfícies */
-  --bg: #080808;
-  --surface: #111111;
-  --surface-2: #181818;
-  --text: #f4f4f1;
-  --text-dim: rgba(244, 244, 241, 0.68);
-  --text-faint: rgba(244, 244, 241, 0.52);
-  --line: rgba(255, 255, 255, 0.14);
-  --line-strong: rgba(255, 255, 255, 0.28);
-
   /*
-    Accent PROVISÓRIO: laranja de sinalização (instrumentação / marcação técnica).
-    Substituir pela cor da marca quando houver identidade visual.
-    Contraste: #FF5A1F sobre #080808 ≈ 6.6:1 · texto #0A0A0A sobre #FF5A1F ≈ 6.9:1.
+    Paleta azul e branco.
+    Tema claro como base; seções fotográficas usam .theme-dark (azul-marinho).
+    Contrastes (WCAG): texto #0B1530/#F6F7F9 16.8:1 · accent #1640D6/#F6F7F9 7.2:1
+    · branco/#1640D6 7.7:1 · dim #4A5167 7.9:1 · faint #5E6578 5.4:1.
   */
-  --accent: #ff5a1f;
-  --accent-ink: #0a0a0a;
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #eceff4;
+  --text: #0b1530;
+  --text-dim: #4a5167;
+  --text-faint: #5e6578;
+  --line: rgba(11, 21, 48, 0.12);
+  --line-strong: rgba(11, 21, 48, 0.26);
+  --shade: 7, 19, 49; /* azul-marinho em RGB, para gradientes sobre fotos */
+
+  /* Azul derivado da faixa Mercosul, mais vivo para ação */
+  --accent: #1640d6;
+  --accent-ink: #ffffff;
 
   /* Cores do padrão Mercosul (uso restrito à ilustração da placa) */
   --plate-blue: #003399;
@@ -51,6 +53,22 @@
   --dur-fast: 180ms;
   --dur: 420ms;
 
+  color-scheme: light;
+}
+
+/* Seções escuras (fotografia, placa, rodapé): azul-marinho + branco */
+.theme-dark {
+  --bg: #071331;
+  --surface: #0b1c45;
+  --surface-2: #10255a;
+  --text: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.74);
+  --text-faint: rgba(255, 255, 255, 0.6);
+  --line: rgba(255, 255, 255, 0.14);
+  --line-strong: rgba(255, 255, 255, 0.3);
+  --accent: #6e9bff;
+  --accent-ink: #071331;
+  color: var(--text);
   color-scheme: dark;
 }
 
@@ -320,7 +338,7 @@ address {
   }
   .btn--ghost:hover,
   .btn--primary:hover {
-    color: var(--accent-ink);
+    color: var(--bg);
     border-color: var(--text);
   }
   .btn--whatsapp:hover {

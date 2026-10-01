@@ -61,11 +61,10 @@ export function ProcessTimeline() {
   );
 
   return (
-    <section ref={root} id="processo" className={styles.section} aria-labelledby="processo-title">
+    <section ref={root} id="processo" className={`${styles.section} theme-dark`} aria-labelledby="processo-title">
       <div className={`${styles.grid} container`}>
         <div className={styles.aside}>
           <div className={styles.sticky}>
-            <p className="mono accent">Processo</p>
             <RevealText as="h2" id="processo-title" className={`${styles.title} h2`} text={"Do pedido\nà instalação."} />
             <p className={styles.big} data-big aria-hidden>
               <span>01</span>

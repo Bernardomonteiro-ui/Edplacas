@@ -29,9 +29,9 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(8, 8, 8, 0.85) 0%, rgba(8, 8, 8, 0.35) 55%, rgba(8, 8, 8, 0.1) 100%),
-    linear-gradient(0deg, rgba(8, 8, 8, 0.9) 0%, rgba(8, 8, 8, 0) 50%),
-    linear-gradient(180deg, var(--bg) 0%, rgba(8, 8, 8, 0) 18%);
+    linear-gradient(90deg, rgba(var(--shade), 0.85) 0%, rgba(var(--shade), 0.35) 55%, rgba(var(--shade), 0.1) 100%),
+    linear-gradient(0deg, rgba(var(--shade), 0.9) 0%, rgba(var(--shade), 0) 50%),
+    linear-gradient(180deg, var(--bg) 0%, rgba(var(--shade), 0) 18%);
 }
 
 .content {
@@ -72,7 +72,7 @@
 
 @media (max-width: 559px) {
   .title {
-    font-size: clamp(2.25rem, 10vw, 4rem);
+    font-size: clamp(1.75rem, 8.8vw, 4rem);
   }
   .ctas {
     display: grid;
@@ -88,7 +88,7 @@
 
 @media (max-width: 359px) {
   .title {
-    font-size: clamp(1.875rem, 9.5vw, 2.5rem);
+    font-size: clamp(1.5rem, 8.4vw, 2.5rem);
     font-stretch: 110%;
   }
 }

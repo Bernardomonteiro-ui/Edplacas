@@ -6,8 +6,8 @@ const size = { width: 1200, height: 630 };
 export function GET() {
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#080808", color: "#f4f4f1", padding: 72, fontFamily: "sans-serif" }}>
-        <div style={{ display: "flex", fontSize: 22, letterSpacing: 6, color: "#ff5a1f" }}>PRECISÃO PARA O SEU CARRO</div>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#071331", color: "#ffffff", padding: 72, fontFamily: "sans-serif" }}>
+        <div style={{ display: "flex", fontSize: 22, letterSpacing: 6, color: "#6e9bff" }}>PRECISÃO PARA O SEU CARRO</div>
         <div style={{ display: "flex", alignItems: "center", gap: 56 }}>
           <div style={{ display: "flex", flexDirection: "column", width: 440, height: 143, background: "#f7f7f4", borderRadius: 8, border: "3px solid #111", overflow: "hidden" }}>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: 30, background: "#003399", color: "#fff", fontSize: 16, letterSpacing: 6, fontWeight: 700 }}>BRASIL</div>

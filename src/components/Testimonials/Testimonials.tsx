@@ -30,7 +30,6 @@ export function Testimonials() {
     <section id="confianca" className={styles.section} aria-labelledby="confianca-title">
       <div className="container">
         <header className={styles.head}>
-          <p className="mono accent">Confiança</p>
           <RevealText as="h2" id="confianca-title" className="h2" text={"Quem faz,\nrecomenda."} />
         </header>
 

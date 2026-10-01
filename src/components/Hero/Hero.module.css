@@ -99,8 +99,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(8, 8, 8, 0.78) 0%, rgba(8, 8, 8, 0.2) 34%, rgba(8, 8, 8, 0) 52%),
-    linear-gradient(0deg, rgba(8, 8, 8, 0.92) 0%, rgba(8, 8, 8, 0.35) 22%, rgba(8, 8, 8, 0) 40%);
+    linear-gradient(180deg, rgba(var(--shade), 0.78) 0%, rgba(var(--shade), 0.2) 34%, rgba(var(--shade), 0) 52%),
+    linear-gradient(0deg, rgba(var(--shade), 0.92) 0%, rgba(var(--shade), 0.35) 22%, rgba(var(--shade), 0) 40%);
 }
 
 .vignette {
@@ -108,7 +108,7 @@
   inset: 0;
   opacity: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 34% 20% at 50% var(--py), rgba(8, 8, 8, 0) 0%, rgba(8, 8, 8, 0.55) 60%, rgba(8, 8, 8, 0.9) 100%);
+  background: radial-gradient(ellipse 34% 20% at 50% var(--py), rgba(var(--shade), 0) 0%, rgba(var(--shade), 0.55) 60%, rgba(var(--shade), 0.9) 100%);
 }
 
 /* Marcações técnicas */

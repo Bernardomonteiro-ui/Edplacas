@@ -110,7 +110,7 @@ export function RequestProvider({ children }: { children: ReactNode }) {
       >
         <div className={styles.panel}>
           <header className={styles.head}>
-            <p className="mono faint">Solicitação · leva menos de 1 minuto</p>
+            <p className="faint">Conte o que precisa. A gente confirma pelo WhatsApp.</p>
             <h2 id={fid("title")} className={styles.title}>
               Solicitar minha placa
             </h2>

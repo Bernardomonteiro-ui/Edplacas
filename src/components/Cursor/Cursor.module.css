@@ -8,7 +8,8 @@
   width: 36px;
   height: 36px;
   margin: -18px 0 0 -18px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: 1px solid #fff;
+  mix-blend-mode: difference;
   border-radius: 50%;
   pointer-events: none;
   transition:
@@ -26,7 +27,7 @@
 
 .ring span {
   font-size: 10px;
-  color: var(--accent-ink);
+  color: #fff;
   opacity: 0;
   transition: opacity 200ms;
 }
@@ -36,8 +37,9 @@
   width: 84px;
   height: 84px;
   margin: -42px 0 0 -42px;
-  background: var(--text);
-  border-color: var(--text);
+  background: var(--accent);
+  border-color: var(--accent);
+  mix-blend-mode: normal;
 }
 
 .ring[data-state="view"] span,
@@ -49,6 +51,6 @@
   width: 12px;
   height: 12px;
   margin: -6px 0 0 -6px;
-  background: var(--accent);
-  border-color: var(--accent);
+  background: #fff;
+  border-color: #fff;
 }

@@ -66,7 +66,7 @@ export function PrecisionSection() {
   );
 
   return (
-    <section ref={root} id="precisao" className={styles.section} aria-labelledby="precisao-title">
+    <section ref={root} id="precisao" className={`${styles.section} theme-dark`} aria-labelledby="precisao-title">
       <div className={styles.stage}>
         <div className={styles.window} data-window data-cursor="view">
           <Image
@@ -120,7 +120,7 @@ export function PrecisionSection() {
         <figure className={styles.loupe} data-loupe>
           <Plate code="EDP2A26" />
           <figcaption className="mono">
-            <span className="accent">Detalhe</span> · 400 × 130 mm
+            Detalhe da placa, 400 × 130 mm
           </figcaption>
         </figure>
 

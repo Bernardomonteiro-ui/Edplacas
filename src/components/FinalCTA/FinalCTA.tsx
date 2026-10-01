@@ -56,7 +56,7 @@ export function FinalCTA() {
   );
 
   return (
-    <section ref={root} className={styles.section} aria-labelledby="final-title">
+    <section ref={root} className={`${styles.section} theme-dark`} aria-labelledby="final-title">
       <div className={styles.media} aria-hidden>
         <div className={styles.imgWrap} data-img>
           <Image src={finalImg} alt="" fill sizes="100vw" placeholder="blur" className={styles.img} />

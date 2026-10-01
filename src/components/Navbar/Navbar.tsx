@@ -22,12 +22,20 @@ export function Navbar() {
   const toggle = useRef<HTMLButtonElement>(null);
   const tl = useRef<gsap.core.Timeline | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [dark, setDark] = useState(true);
   const [open, setOpen] = useState(false);
   const { open: openRequest } = useRequest();
 
   // Estado "scrolled": fundo sólido discreto e altura reduzida.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    // Tom da barra: segue a seção que está sob ela (escura = texto branco; clara = azul-marinho).
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      const under = document
+        .elementsFromPoint(window.innerWidth / 2, 40)
+        .find((el) => !header.current?.contains(el));
+      setDark(!!under?.closest(".theme-dark"));
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -100,7 +108,7 @@ export function Navbar() {
   const tel = telHref();
 
   return (
-    <header ref={header} className={styles.header} data-scrolled={scrolled || undefined} data-open={open || undefined}>
+    <header ref={header} className={`${styles.header}${dark ? " theme-dark" : ""}`} data-scrolled={scrolled || undefined} data-open={open || undefined}>
       <div className={styles.bar}>
         <a href="#top" className={styles.logo} aria-label={`${company.name} — início`} onClick={() => setOpen(false)}>
           <Logo />

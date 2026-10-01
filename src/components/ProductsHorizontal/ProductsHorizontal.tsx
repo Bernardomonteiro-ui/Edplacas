@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image, { type StaticImageData } from "next/image";
 import { company, type Product } from "@/config/company";
 import imgPadrao from "@/assets/images/p-padrao.jpg";
@@ -80,9 +80,26 @@ function Panel({ product }: { product: Product }) {
 
 export function ProductsHorizontal() {
   const bar = useRef<HTMLSpanElement>(null);
+  const section = useRef<HTMLElement>(null);
+
+  // Os painéis ficam fora da tela na horizontal: o lazy-load nativo só os buscaria
+  // no último instante. Quando a seção se aproxima, as fotos passam a carregar.
+  useEffect(() => {
+    const el = section.current!;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        el.querySelectorAll<HTMLImageElement>('img[loading="lazy"]').forEach((img) => (img.loading = "eager"));
+        io.disconnect();
+      },
+      { rootMargin: "150% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <section id="modelos" className={styles.section} aria-labelledby="modelos-title">
+    <section ref={section} id="modelos" className={styles.section} aria-labelledby="modelos-title">
       <HorizontalScroll
         className={styles.pin}
         trackClassName={styles.track}
@@ -94,7 +111,6 @@ export function ProductsHorizontal() {
         }
       >
         <div className={styles.intro}>
-          <p className="mono accent">Modelos</p>
           <RevealText as="h2" id="modelos-title" className="h2" text={"Escolha o\nacabamento."} />
           <p className={`${styles.introText} lead`}>
             Da placa padrão Mercosul à placa de moto. Deslize para ver cada modelo e peça o seu direto daqui.

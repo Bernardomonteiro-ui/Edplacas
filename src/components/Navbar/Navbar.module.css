@@ -21,7 +21,7 @@
 
 .header[data-scrolled] .bar {
   height: var(--nav-h-compact);
-  background: rgba(8, 8, 8, 0.82);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
   backdrop-filter: blur(8px) saturate(120%);
   -webkit-backdrop-filter: blur(8px) saturate(120%);
   border-bottom-color: var(--line);

@@ -20,7 +20,6 @@ export function Location() {
     <section id="contato" className={styles.section} aria-labelledby="contato-title" data-fade-target>
       <div className="container">
         <header className={styles.head}>
-          <p className="mono accent">Localização</p>
           <RevealText as="h2" id="contato-title" className="h2" text={"Estamos perto\nde você."} />
           <p className={`${styles.intro} lead`}>
             Venda e instalação de placas Mercosul para carros e motos

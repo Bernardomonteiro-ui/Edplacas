@@ -65,7 +65,7 @@ export function Hero() {
   );
 
   return (
-    <section ref={root} id="top" className={styles.hero} aria-labelledby="hero-title">
+    <section ref={root} id="top" className={`${styles.hero} theme-dark`} aria-labelledby="hero-title">
       <div className={styles.stage}>
         <div className={styles.media} data-zoom>
           <div className={styles.drift} data-drift>
@@ -107,7 +107,7 @@ export function Hero() {
           <span className={styles.crossH} data-tech />
           <span className={styles.crossV} data-tech />
           <span className={`${styles.plateLabel} mono`} data-plate-label>
-            <b>01</b> Placa instalada · eixo nivelado
+            Placa instalada e nivelada
           </span>
         </div>
 

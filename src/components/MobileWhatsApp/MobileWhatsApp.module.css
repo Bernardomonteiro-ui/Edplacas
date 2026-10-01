@@ -5,7 +5,7 @@
   bottom: 0;
   z-index: 90;
   padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom));
-  background: linear-gradient(0deg, rgba(8, 8, 8, 0.95) 40%, rgba(8, 8, 8, 0));
+  background: linear-gradient(0deg, color-mix(in srgb, var(--bg) 96%, transparent) 40%, transparent);
   transform: translateY(110%);
   transition: transform 500ms var(--ease-out);
   pointer-events: none;

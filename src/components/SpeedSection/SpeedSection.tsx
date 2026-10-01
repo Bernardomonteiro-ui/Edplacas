@@ -81,7 +81,6 @@ export function SpeedSection() {
 
       <div className={`${styles.body} container`} data-rows-count={rows.length}>
         <div className={styles.intro}>
-          <p className="mono accent">{company.name}</p>
           <p className={`${styles.desc} lead`}>{company.description}</p>
           <ul className={styles.services}>
             {company.services.map((s) => (

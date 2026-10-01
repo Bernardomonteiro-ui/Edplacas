@@ -83,13 +83,13 @@ export function PlateAnatomy() {
   );
 
   return (
-    <section ref={root} id="anatomia" className={styles.section} aria-labelledby="anatomia-title" data-active="0">
+    <section ref={root} id="anatomia" className={`${styles.section} theme-dark`} aria-labelledby="anatomia-title" data-active="0">
       <div className={styles.stage}>
         <header className={`${styles.head} container`}>
-          <p className="mono accent">Anatomia da placa</p>
-          <h2 id="anatomia-title" className={`${styles.title} h3`}>
-            Cinco pontos que separam uma placa bem instalada de uma placa qualquer.
+          <h2 id="anatomia-title" className={`${styles.heading} h3`}>
+            Anatomia da placa
           </h2>
+          <p className={styles.title}>Cinco pontos que separam uma placa bem instalada de uma placa qualquer.</p>
           <p className={`${styles.counter} mono`} aria-hidden>
             <span data-counter>01</span> / {String(items.length).padStart(2, "0")}
           </p>
