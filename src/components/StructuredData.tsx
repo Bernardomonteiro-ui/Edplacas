@@ -33,7 +33,7 @@ export function StructuredData() {
     name: u.name,
     parentOrganization: { "@id": `${siteUrl}/#org` },
     url: siteUrl,
-    image: `${siteUrl}/opengraph-image`,
+    image: `${siteUrl}/og.png`,
     telephone: u.phone ?? company.contact.phone ?? undefined,
     address: {
       "@type": "PostalAddress",

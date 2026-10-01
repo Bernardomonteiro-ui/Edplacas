@@ -5,9 +5,25 @@ Next.js 16 (App Router) · React 19 · TypeScript · CSS Modules · GSAP + Scrol
 ```bash
 npm install
 npm run dev        # http://localhost:3000 — mostra marcadores [PREENCHER: …]
-npm run build && npm start
+npm run build      # gera o site estático em out/
+npm start          # serve out/ localmente
 npm run typecheck
 ```
+
+## Publicação (GitHub Pages)
+
+O site é exportado como HTML estático e publicado pelo workflow
+[`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) a cada push na `main`.
+
+Configuração única no GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+Sem isso, o GitHub Pages continua mostrando apenas este README.
+
+Endereço: `https://<usuario>.github.io/<repositorio>/`. O subcaminho e a URL pública são
+definidos automaticamente pelo workflow (`NEXT_PUBLIC_BASE_PATH` / `NEXT_PUBLIC_SITE_URL`).
+Com domínio próprio, deixe `NEXT_PUBLIC_BASE_PATH` vazio.
+
+As fotos de `src/assets/images` viram WebP responsivos em `public/img` (`scripts/build-images.mjs`,
+roda sozinho antes do build), porque hospedagem estática não otimiza imagens sob demanda.
 
 ## 1. Preencher os dados da empresa
 
@@ -51,7 +67,7 @@ Com a cidade preenchida, título, descrição e textos de localização passam a
 
 ## 2. Produção
 
-Defina `NEXT_PUBLIC_SITE_URL` (veja `.env.example`). Sem ela, o build de produção não emite canonical, sitemap, URLs de Open Graph nem JSON-LD, para não publicar URLs erradas.
+Fora do GitHub Pages, defina `NEXT_PUBLIC_SITE_URL` (veja `.env.example`). Sem ela, o build de produção não emite canonical, sitemap, URLs de Open Graph nem JSON-LD, para não publicar URLs erradas.
 
 ## 3. Identidade visual
 

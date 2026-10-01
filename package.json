@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/build-images.mjs && next dev",
+    "prebuild": "node scripts/build-images.mjs",
     "build": "next build",
-    "start": "next start",
+    "start": "npx --yes serve@14 out",
     "typecheck": "tsc --noEmit",
     "images": "node scripts/optimize-images.mjs"
   },

@@ -20,7 +20,7 @@ const title = `${company.name} — Placas automotivas Mercosul${where}`;
 const description = `Venda e instalação de placas automotivas Mercosul para carros e motos${where}. Acabamento profissional, atendimento rápido e instalação especializada.`;
 
 export const metadata: Metadata = {
-  ...(siteUrl ? { metadataBase: new URL(siteUrl), alternates: { canonical: "/" } } : {}),
+  ...(siteUrl ? { metadataBase: new URL(`${siteUrl}/`), alternates: { canonical: `${siteUrl}/` } } : {}),
   title: { default: title, template: `%s · ${company.name}` },
   description,
   applicationName: company.name,
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     ...(siteUrl
       ? {
-          url: "/",
-          images: [{ url: "/api/og", width: 1200, height: 630, alt: `${company.name} — placas automotivas` }],
+          url: `${siteUrl}/`,
+          images: [{ url: `${siteUrl}/og.png`, width: 1200, height: 630, alt: `${company.name} — placas automotivas` }],
         }
       : {}),
     siteName: company.name,
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    ...(siteUrl ? { images: [`${siteUrl}/api/og`] } : {}),
+    ...(siteUrl ? { images: [`${siteUrl}/og.png`] } : {}),
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
   formatDetection: { telephone: false },

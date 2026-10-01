@@ -3,6 +3,9 @@ import { company } from "@/config/company";
 
 const size = { width: 1200, height: 630 };
 
+/* Gerada no build como /og.png (exportação estática exige rota estática). */
+export const dynamic = "force-static";
+
 export function GET() {
   return new ImageResponse(
     (

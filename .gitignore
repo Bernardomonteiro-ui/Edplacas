@@ -4,3 +4,6 @@ out
 next-env.d.ts
 *.tsbuildinfo
 .env*.local
+
+# imagens geradas no build
+/public/img
